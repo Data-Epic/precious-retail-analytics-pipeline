@@ -1,0 +1,6 @@
+services:
+  data_pipeline:
+    build: .
+    volumes:
+      - .:/analytics
+   
