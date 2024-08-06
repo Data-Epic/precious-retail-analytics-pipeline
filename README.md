@@ -45,8 +45,8 @@ The `online_retail.zip` file contains a CSV file with the following columns:
 1. **Clone the repository:**
 
    ```
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/Data-Epic/precious-retail-analytics-pipeline.git
+   cd precious-retail-analytics-pipeline
    ```
 
 2. **Build and start the Docker container:**
