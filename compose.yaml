@@ -1,0 +1,11 @@
+services:
+  realtime-analytics:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: realtime-analytics
+    container_name: realtime-analytics-container
+    volumes:
+      - .:/analytics:ro
+    tty: true
+    stdin_open: true
