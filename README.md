@@ -49,49 +49,25 @@ The `online_retail.zip` file contains a CSV file with the following columns:
    cd <repository-directory>
    ```
 
-2. **Build and start the Docker container:**
+2. **Build the docker container:**
 
    ```
-   docker compose up --build
+   docker compose build
    ```
 
    This will:
    - Build the Docker image based on the provided Dockerfile.
-   - Install necessary dependencies.
-   - Download and unzip the DuckDB CLI.
-   - Unzip the retail dataset.
-   - Run the data ingestion script.
-   - Open the DuckDB CLI.
 
-### Manually Running the DuckDB CLI
+3. **Run the docker container in interactive mode:**
 
-If the DuckDB CLI does not open automatically, you can manually start it by following these steps:
+```
+docker run -it realtime-analytics
+```
+This will open the DuckDB CLI with the `retail.db` database loaded.
 
-1. **Access the running container:**
+4. **Query the database:**
 
-   ```
-   docker exec -it <container-id> /bin/bash
-   ```
-
-   Replace `<container-id>` with the ID of the running container, which you can find using:
-
-   ```
-   docker ps
-   ```
-
-2. **Run the DuckDB CLI:**
-
-   ```
-   ./duckdb /retail.db
-   ```
-
-   This will open the DuckDB CLI with the `retail.db` database loaded.
-
-### Expected Output on Testing
-
-After running the data ingestion script and opening the DuckDB CLI, you can query the `finance_data` table in the `retail.db` database. Below is an example of an expected output for a basic query:
-
-1. **Select all data from the `finance_data` table:**
+You can query the `finance_data` table in the `retail.db` database using the open DuckDB CLI. Below is an example of an expected output for a basic query:
 
    ```
    SELECT * FROM finance_data;
@@ -105,6 +81,8 @@ After running the data ingestion script and opening the DuckDB CLI, you can quer
    | 10003     | 8500.75                | 212.54                   | 5.00      | 400.00    |
    | ...       | ...                    | ...                      | ...       | ...       |
 
+5. **Exit the CLI when you're done:**
+Enter `.exit` to exit the DuckDB CLI, then use CTRL+C to exit the docker interactive mode.
 
 ### Customization
 
