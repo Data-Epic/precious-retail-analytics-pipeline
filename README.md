@@ -3,7 +3,7 @@
 
 This project sets up a Docker environment for a real-time analytics pipeline using Python, Polars, DuckDB, and Docker. The environment is designed to ingest retail data and provide a command-line interface (CLI) for querying the data using DuckDB.
 
-### Dataset
+## Dataset
 
 The dataset used here is a transactional dataset which contains all the transactions occurring between 01/12/2010 and 09/12/2011 for a UK-based and registered non-store online retail. 
  <br>
@@ -26,12 +26,12 @@ The `online_retail.zip` file contains a CSV file with the following columns:
 - `CustomerID`: Customer number.
 - `Country`: Country of the customer.
 
-### Prerequisites
+## Prerequisites
 
 - Docker engine or Docker Desktop
 - Git
 
-### Project Structure
+## Project Structure
 
 - `Dockerfile`: The Dockerfile to build the Docker image.
 - `compose.yaml`: The Docker Compose file to manage services.
@@ -40,7 +40,7 @@ The `online_retail.zip` file contains a CSV file with the following columns:
 - `online_retail.zip`: The zipped dataset for retail data.
 - Other project-related files and scripts.
 
-### Getting Started
+## Getting Started
 
 1. **Clone the repository:**
 
@@ -49,49 +49,22 @@ The `online_retail.zip` file contains a CSV file with the following columns:
    cd precious-retail-analytics-pipeline
    ```
 
-2. **Build and start the Docker container:**
+2. **Build the Docker image:**
 
    ```
-   docker compose up --build
+   docker compose build
    ```
 
-   This will:
-   - Build the Docker image based on the provided Dockerfile.
-   - Install necessary dependencies.
-   - Download and unzip the DuckDB CLI.
-   - Unzip the retail dataset.
-   - Run the data ingestion script.
-   - Open the DuckDB CLI.
-
-### Manually Running the DuckDB CLI
-
-If the DuckDB CLI does not open automatically, you can manually start it by following these steps:
-
-1. **Access the running container:**
+3. **Run the container in interactive mode to launch the duckdb CLI:**
 
    ```
-   docker exec -it <container-id> /bin/bash
-   ```
-
-   Replace `<container-id>` with the ID of the running container, which you can find using:
-
-   ```
-   docker ps
-   ```
-
-2. **Run the DuckDB CLI:**
-
-   ```
-   ./duckdb /retail.db
+   docker run -it realtime-analytics
    ```
 
    This will open the DuckDB CLI with the `retail.db` database loaded.
 
-### Expected Output on Testing
-
-After running the data ingestion script and opening the DuckDB CLI, you can query the `finance_data` table in the `retail.db` database. Below is an example of an expected output for a basic query:
-
-1. **Select all data from the `finance_data` table:**
+4. **Query the database:**
+You can query the `finance_data` table in the `retail.db` database. Below is an example of an expected output for a basic query:
 
    ```
    SELECT * FROM finance_data;
@@ -104,6 +77,10 @@ After running the data ingestion script and opening the DuckDB CLI, you can quer
    | 10002     | 10000.50               | 250.12                   | 10.00     | 500.00    |
    | 10003     | 8500.75                | 212.54                   | 5.00      | 400.00    |
    | ...       | ...                    | ...                      | ...       | ...       |
+
+5. **Exit when you're done:**
+Enter `.exit` to exit the duckdb CLi. Then, use CTRL+C to close the docker interactive mode.
+You can stop the container if you want to.
 
 
 ### Customization
